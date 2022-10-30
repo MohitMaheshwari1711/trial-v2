@@ -34,13 +34,11 @@ const App = () => {
             justifyContent: "space-between",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <img
-              src={brandLogo}
-              width={24}
-              height={24}
-              onClick={() => history.push("/")}
-            />
+          <div
+            style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
+            onClick={() => history.push("/")}
+          >
+            <img src={brandLogo} width={24} height={24} />
             <span
               style={{
                 marginLeft: 8,
@@ -71,10 +69,10 @@ const App = () => {
       >
         <div style={{ backgroundColor: "#fff" }}>
           <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route path="/onBoarding" component={RestaurantOnBoarding} />
-            <Route path="/" exact={true} component={ApprovalDashboard} />
-          </Switch>
+            <Switch>
+              <Route path="/onBoarding" component={RestaurantOnBoarding} />
+              <Route path="/" exact={true} component={ApprovalDashboard} />
+            </Switch>
           </Suspense>
         </div>
       </Content>

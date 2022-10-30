@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://af93-122-161-87-5.in.ngrok.io";
+const URL = "https://populencer.herokuapp.com";
 
 export const fetchAllPendingPosts = async () => {
   try {

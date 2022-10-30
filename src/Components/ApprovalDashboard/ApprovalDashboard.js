@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import logo from "../../logo.svg";
-import { CloseCircleTwoTone, DownOutlined } from "@ant-design/icons";
+import { useHistory } from "react-router-dom";
+import {
+  CloseCircleTwoTone,
+  DownOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 import {
   Layout,
   Divider,
@@ -103,6 +108,7 @@ const data = [
 ];
 
 const ApprovalDashboard = () => {
+  const history = useHistory();
   const [list, updateList] = useState([]);
   const [showCity, setCity] = useState("City/area");
   const [restaurantName, updateRestaurantName] = useState("Restaurant name");
@@ -173,6 +179,7 @@ const ApprovalDashboard = () => {
 
   const fetchContentByRestaurant = (id) => {
     fetchAllPendingPostsByRestaurant(id).then((response) => {
+      const data = response.data;
       const tableList = [];
       data.map((val) => {
         if (val.contentList.length > 0) {
@@ -288,6 +295,14 @@ const ApprovalDashboard = () => {
               </Space>
             </Button>
           </Dropdown>
+          <Button
+            type="primary"
+            style={{ marginLeft: 8 }}
+            icon={<PlusOutlined />}
+            onClick={() => history.push("/onBoarding")}
+          >
+            Register Restaurant
+          </Button>
         </div>
       </div>
       <Divider />
