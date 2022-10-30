@@ -1,6 +1,8 @@
 import { Button, Form, Input, Col, Row, Divider, Upload, message } from "antd";
 import { SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { restaurantOnboarding } from "../../api";
 
 const props = {
@@ -32,8 +34,12 @@ const props = {
 
 const RestaurantOnBoarding = () => {
   const onFinish = (values) => {
-    restaurantOnboarding(values).then((val) => console.log(val));
+    restaurantOnboarding(values).then((val) => {
+      notify(val.data.restaurantId);
+    });
   };
+  const notify = (restaurantId) =>
+    toast.success(`Your restaurant ID is - ${restaurantId}`);
   return (
     <div
       style={{
@@ -52,7 +58,7 @@ const RestaurantOnBoarding = () => {
             Add your details
           </Col>
           <Col span={6}></Col>
-          
+
           <Col span={6}></Col>
           <Col span={12}>
             <Form.Item
@@ -204,7 +210,11 @@ const RestaurantOnBoarding = () => {
           <Col span={6}></Col>
           <Col span={12}>
             <Form.Item>
-              <Button type="primary" htmlType="submit" style={{ width: '100%', height: 40 }}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{ width: "100%", height: 40 }}
+              >
                 Submit
               </Button>
             </Form.Item>
@@ -261,6 +271,7 @@ const RestaurantOnBoarding = () => {
           */}
         </Row>
       </Form>
+      <ToastContainer />
     </div>
   );
 };
